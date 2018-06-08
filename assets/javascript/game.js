@@ -1,25 +1,25 @@
 //variables//
 
-var wordList = ["ACDC", "guitar", "drums"];
+var wordList = ["ACDC", "guitar", "drums", "rock","paper", "concert",];
 
 var compWord;
 var alphabets;
-var wins = 0;
-var loses = 0;
 var userInput;
 var guessesLeft = 9;
 var guesses = [];
 var display = [];
+var wins = 0;
+var loses = 0;
+
+
 
 
 
 //Start running a new game//
 function start() {
     compWord = wordList[Math.floor(Math.random() * wordList.length)];
-    console.log(compWord);
-
     alphabets = compWord.toUpperCase().split("");
-    console.log(alphabets);
+    console.log("compWord = " + compWord + "  " + "alphabets = " + alphabets);
 
     guessesLeft = 9;
     guesses = [];
@@ -38,23 +38,20 @@ function processing() {
 
     document.onkeyup = function (event) {
         userInput = String.fromCharCode(event.keyCode).toUpperCase();
-        console.log(userInput);
         guesses.push(userInput);
-        console.log("Guesses made = " + guesses);
+        console.log("userInput = " + userInput + "Guesses made = " + guesses);
 
         for (var i = 0; i < alphabets.length; i++) {
             if (userInput === alphabets[i]) {
                 display[i] = userInput;
                 console.log("display = " + display);
-                document.getElementById("display").innerHTML = display.join("");
             }
         }
 
         if (alphabets.includes(userInput) === false) {
-            loses++;
-            console.log("loses = " + loses);
             guessesLeft--;
             console.log("guessesLeft = " + guessesLeft);
+
         }
 
         if (display.toString() == alphabets.toString()) {
@@ -66,10 +63,20 @@ function processing() {
         }
 
         if (guessesLeft <= 0) {
+            loses++;
+            console.log("loses = " + loses);
             alert("Game Over" + "\n" + "You ran out of tries" + "\n" + "Click ok to try again");
             start()
         }
+
+        document.getElementById("display").innerHTML = display.join("");
+        document.getElementById("guesses").innerHTML = guesses;
+        document.getElementById("wins").innerHTML = wins;
+        document.getElementById("loses").innerHTML = loses;
+        document.getElementById("guessesleft").innerHTML = guessesLeft;
     }
+
+
 
 };
 
