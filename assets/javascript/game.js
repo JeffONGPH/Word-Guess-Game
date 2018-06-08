@@ -40,7 +40,8 @@ function processing() {
         userInput = String.fromCharCode(event.keyCode).toUpperCase();
         guesses.push(userInput);
         console.log("userInput = " + userInput + "Guesses made = " + guesses);
-
+        
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
         for (var i = 0; i < alphabets.length; i++) {
             if (userInput === alphabets[i]) {
                 display[i] = userInput;
@@ -68,13 +69,15 @@ function processing() {
             alert("Game Over" + "\n" + "You ran out of tries" + "\n" + "Click ok to try again");
             start()
         }
+    
 
         document.getElementById("display").innerHTML = display.join("");
-        document.getElementById("guesses").innerHTML = guesses;
+        document.getElementById("guesses").innerHTML = "." + guesses;
         document.getElementById("wins").innerHTML = wins;
         document.getElementById("loses").innerHTML = loses;
         document.getElementById("guessesleft").innerHTML = guessesLeft;
     }
+}
 
 
 
