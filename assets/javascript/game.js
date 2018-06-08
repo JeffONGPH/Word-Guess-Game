@@ -11,10 +11,6 @@ var display = [];
 var wins = 0;
 var loses = 0;
 
-
-
-
-
 //Start running a new game//
 function start() {
     compWord = wordList[Math.floor(Math.random() * wordList.length)];
